@@ -1,0 +1,81 @@
+body{
+    min-height: 100vh;
+    background-color: dimgray;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+.content{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+}
+.group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+.header{
+    background-color: darkgray;
+    min-width: 436px;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+.tableContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.tableRow{
+    min-width: 150px;
+    display: flex;
+    gap: 2px;
+}
+.tableRow > div{
+    padding: 5px;
+    min-width: 100px;
+}
+.tableRow:first-child > div{
+    background-color: darkgray;
+}
+.matchesContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.match{
+    display: flex;
+    gap: 5px;
+}
+.matchup{
+    min-width: 200px;
+    background-color: darkgray;
+    padding: 5px;
+    text-align: center;
+}
+.playerSelect, .scoreSelect{
+    min-width: 100px;
+    padding: 5px;
+    text-align: center;
+}
+.reset{
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: none;
+}
+select{
+    cursor: pointer;
+}
+select:disabled{
+    color: black;
+}
