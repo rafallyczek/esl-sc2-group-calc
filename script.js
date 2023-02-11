@@ -3,6 +3,7 @@ const content = document.querySelector(".content");
 const tableContainers = document.querySelectorAll(".tableContainer");
 const matchesContainers = document.querySelectorAll(".matchesContainer");
 const resetButton = document.querySelector(".reset");
+const showHideMatches = document.querySelectorAll(".showHide");
 const numberOfPlayers = 6;
 const numberOfGroups = 4;
 /*
@@ -79,6 +80,17 @@ showButton.addEventListener("click",function(){
         matchResult[3] = +this.value.split(" ")[1];
         this.disabled = "true";
         update(matchResult,+this.value.split(" ")[2]);
+    }));
+
+    showHideMatches.forEach(showHide => showHide.addEventListener("click",function(){
+        let isVisible = window.getComputedStyle(this.nextElementSibling).display=="none" ? false : true;
+        if(isVisible){
+            this.nextElementSibling.style.display = "none";
+            this.textContent = "Show";
+        }else{
+            this.nextElementSibling.style.display = "flex";
+            this.textContent = "Hide";
+        }
     }));
 
     resetButton.addEventListener("click",function(){

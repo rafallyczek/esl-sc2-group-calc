@@ -22,6 +22,7 @@ body{
     align-items: center;
     flex-direction: column;
     gap: 5px;
+    margin-bottom: auto;
 }
 .header{
     background-color: darkgray;
@@ -47,8 +48,18 @@ body{
 .tableRow:first-child > div{
     background-color: darkgray;
 }
+.showHide{
+    min-width: 433px;
+    background-color: darkgray;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+.showHide:hover{
+    color: white;
+}
 .matchesContainer{
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 5px;
 }
