@@ -26,7 +26,7 @@ body{
 }
 .header{
     background-color: darkgray;
-    min-width: 436px;
+    min-width: 476px;
     padding: 5px;
     text-align: center;
     font-weight: bold;
@@ -37,19 +37,18 @@ body{
     gap: 2px;
 }
 .tableRow{
-    min-width: 150px;
     display: flex;
     gap: 2px;
 }
 .tableRow > div{
     padding: 5px;
-    min-width: 100px;
+    min-width: 110px;
 }
 .tableRow:first-child > div{
     background-color: darkgray;
 }
 .showHide{
-    min-width: 433px;
+    min-width: 476px;
     background-color: darkgray;
     padding: 5px;
     text-align: center;
@@ -68,15 +67,23 @@ body{
     gap: 5px;
 }
 .matchup{
-    min-width: 200px;
+    min-width: 220px; 
+    display: flex;  
+}
+.matchup > div{
     background-color: darkgray;
     padding: 5px;
     text-align: center;
 }
-.playerSelect, .scoreSelect{
+.playerDiv{
     min-width: 100px;
+}
+.playerSelect, .scoreSelect{
+    width: 80px;
     padding: 5px;
-    text-align: center;
+}
+.applyButton{
+    cursor: pointer;
 }
 .reset{
     padding: 5px 10px;
