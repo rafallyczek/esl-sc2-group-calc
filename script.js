@@ -142,11 +142,6 @@ showButton.addEventListener("click",function(){
 
     playerSelects.forEach(playerSelect => playerSelect.addEventListener("change",function(){
         matchResult[0] = +this.value;
-        // if(+this.value!=NO_WINNER){
-        //     this.style.backgroundColor = "lightgreen";
-        // }else{
-        //     this.style.backgroundColor = "white";
-        // }
     }));
 
     scoreSelects.forEach(scoreSelect => scoreSelect.addEventListener("change",function(){
@@ -155,6 +150,16 @@ showButton.addEventListener("click",function(){
     }));
 
     applyButtons.forEach(applyButton => applyButton.addEventListener("click",function(){
+        const playerDivs = this.parentElement.querySelector(".matchup").querySelectorAll(".playerDiv");
+        if((matchResult[1]==0 && matchResult[2]==0) || matchResult[0]==NO_WINNER){
+            playerDivs.forEach(div => div.style.backgroundColor="darkgray");
+        }else{
+            playerDivs.forEach(div => {
+                if(div.getAttribute("value")==+matchResult[0]){
+                    div.style.backgroundColor="lightgreen";
+                }
+            });
+        }
         updateMatches(matchResult,+this.value.split(" ")[0],+this.value.split(" ")[1]);
         updatePlayers(+this.value.split(" ")[0]);
     }));
@@ -298,6 +303,7 @@ function createMatchRow(groupId,matchId){
 
     const playerDiv1 = document.createElement("div");
     playerDiv1.textContent = players[groupId][player1].name;
+    playerDiv1.setAttribute("value",player1);
     playerDiv1.classList.add("playerDiv");
 
     const vsDiv = document.createElement("div");
@@ -305,6 +311,7 @@ function createMatchRow(groupId,matchId){
 
     const playerDiv2 = document.createElement("div");
     playerDiv2.textContent = players[groupId][player2].name;
+    playerDiv2.setAttribute("value",player2);
     playerDiv2.classList.add("playerDiv");
 
     matchupDiv.appendChild(playerDiv1);

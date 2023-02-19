@@ -69,6 +69,7 @@ body{
 .matchup{
     min-width: 220px; 
     display: flex;  
+    gap: 2px;
 }
 .matchup > div{
     background-color: darkgray;
