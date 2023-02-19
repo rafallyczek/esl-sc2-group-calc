@@ -5,6 +5,7 @@ const matchesContainers = document.querySelectorAll(".matchesContainer");
 const resetButton = document.querySelector(".reset");
 const showHideMatches = document.querySelectorAll(".showHide");
 const numberOfPlayers = 6;
+const numberOfMatches = (numberOfPlayers*(numberOfPlayers-1))/2;
 const numberOfGroups = 4;
 /*
 [0] - winner
@@ -15,6 +16,77 @@ const numberOfGroups = 4;
 let matchResult = [];
 
 let keys = ["vs0","vs1","vs2","vs3","vs4","vs5"];
+
+let matches = [
+    [
+        {id:0 ,player1:0,player2:1,winner:0,score:"0-0"},
+        {id:1 ,player1:0,player2:2,winner:0,score:"0-0"},
+        {id:2 ,player1:0,player2:3,winner:0,score:"0-0"},
+        {id:3 ,player1:0,player2:4,winner:0,score:"0-0"},
+        {id:4 ,player1:0,player2:5,winner:0,score:"0-0"},
+        {id:5 ,player1:1,player2:2,winner:0,score:"0-0"},
+        {id:6 ,player1:1,player2:3,winner:0,score:"0-0"},
+        {id:7 ,player1:1,player2:4,winner:0,score:"0-0"},
+        {id:8 ,player1:1,player2:5,winner:0,score:"0-0"},
+        {id:9 ,player1:2,player2:3,winner:0,score:"0-0"},
+        {id:10,player1:2,player2:4,winner:0,score:"0-0"},
+        {id:11,player1:2,player2:5,winner:0,score:"0-0"},
+        {id:12,player1:3,player2:4,winner:0,score:"0-0"},
+        {id:13,player1:3,player2:5,winner:0,score:"0-0"},
+        {id:14,player1:4,player2:5,winner:0,score:"0-0"}
+    ],
+    [
+        {id:0 ,player1:0,player2:1,winner:0,score:"0-0"},
+        {id:1 ,player1:0,player2:2,winner:0,score:"0-0"},
+        {id:2 ,player1:0,player2:3,winner:0,score:"0-0"},
+        {id:3 ,player1:0,player2:4,winner:0,score:"0-0"},
+        {id:4 ,player1:0,player2:5,winner:0,score:"0-0"},
+        {id:5 ,player1:1,player2:2,winner:0,score:"0-0"},
+        {id:6 ,player1:1,player2:3,winner:0,score:"0-0"},
+        {id:7 ,player1:1,player2:4,winner:0,score:"0-0"},
+        {id:8 ,player1:1,player2:5,winner:0,score:"0-0"},
+        {id:9 ,player1:2,player2:3,winner:0,score:"0-0"},
+        {id:10,player1:2,player2:4,winner:0,score:"0-0"},
+        {id:11,player1:2,player2:5,winner:0,score:"0-0"},
+        {id:12,player1:3,player2:4,winner:0,score:"0-0"},
+        {id:13,player1:3,player2:5,winner:0,score:"0-0"},
+        {id:14,player1:4,player2:5,winner:0,score:"0-0"}
+    ],
+    [
+        {id:0 ,player1:0,player2:1,winner:0,score:"0-0"},
+        {id:1 ,player1:0,player2:2,winner:0,score:"0-0"},
+        {id:2 ,player1:0,player2:3,winner:0,score:"0-0"},
+        {id:3 ,player1:0,player2:4,winner:0,score:"0-0"},
+        {id:4 ,player1:0,player2:5,winner:0,score:"0-0"},
+        {id:5 ,player1:1,player2:2,winner:0,score:"0-0"},
+        {id:6 ,player1:1,player2:3,winner:0,score:"0-0"},
+        {id:7 ,player1:1,player2:4,winner:0,score:"0-0"},
+        {id:8 ,player1:1,player2:5,winner:0,score:"0-0"},
+        {id:9 ,player1:2,player2:3,winner:0,score:"0-0"},
+        {id:10,player1:2,player2:4,winner:0,score:"0-0"},
+        {id:11,player1:2,player2:5,winner:0,score:"0-0"},
+        {id:12,player1:3,player2:4,winner:0,score:"0-0"},
+        {id:13,player1:3,player2:5,winner:0,score:"0-0"},
+        {id:14,player1:4,player2:5,winner:0,score:"0-0"}
+    ],
+    [
+        {id:0 ,player1:0,player2:1,winner:0,score:"0-0"},
+        {id:1 ,player1:0,player2:2,winner:0,score:"0-0"},
+        {id:2 ,player1:0,player2:3,winner:0,score:"0-0"},
+        {id:3 ,player1:0,player2:4,winner:0,score:"0-0"},
+        {id:4 ,player1:0,player2:5,winner:0,score:"0-0"},
+        {id:5 ,player1:1,player2:2,winner:0,score:"0-0"},
+        {id:6 ,player1:1,player2:3,winner:0,score:"0-0"},
+        {id:7 ,player1:1,player2:4,winner:0,score:"0-0"},
+        {id:8 ,player1:1,player2:5,winner:0,score:"0-0"},
+        {id:9 ,player1:2,player2:3,winner:0,score:"0-0"},
+        {id:10,player1:2,player2:4,winner:0,score:"0-0"},
+        {id:11,player1:2,player2:5,winner:0,score:"0-0"},
+        {id:12,player1:3,player2:4,winner:0,score:"0-0"},
+        {id:13,player1:3,player2:5,winner:0,score:"0-0"},
+        {id:14,player1:4,player2:5,winner:0,score:"0-0"}
+    ]
+];
 
 //Table containing results from certain groups. Last 6 properties indicate map wins vs certain players
 let results = [
@@ -122,11 +194,9 @@ function displayMatches(groupId){
 
     let matchRow;
 
-    for(let i=0;i<numberOfPlayers-1;i++){
-        for(let j=i+1;j<numberOfPlayers;j++){
-            matchRow = createMatchRow(i,j,groupId);
-            matchesContainers[groupId].appendChild(matchRow);
-        }
+    for(let i=0;i<numberOfMatches;i++){
+        matchRow = createMatchRow(groupId,i);
+        matchesContainers[groupId].appendChild(matchRow);
     }
 
 }
@@ -208,7 +278,10 @@ function createTableRow(playerData,color){
 
 }
 
-function createMatchRow(player1,player2,groupId){
+function createMatchRow(groupId,matchId){
+
+    let player1 = matches[groupId][matchId].player1;
+    let player2 = matches[groupId][matchId].player2;;
 
     const matchRow = document.createElement("div");
     matchRow.classList.add("match");
@@ -222,7 +295,7 @@ function createMatchRow(player1,player2,groupId){
 
     let option1 = document.createElement("option");
     option1.textContent = "Select winner";
-    option1.value = "";
+    option1.value = `${results[groupId][player1].id} ${results[groupId][player2].id}`;
     option1.selected = "true";
     //option1.disabled = "true";
 
@@ -244,7 +317,7 @@ function createMatchRow(player1,player2,groupId){
 
     option1 = document.createElement("option");
     option1.textContent = "Select score";
-    option1.value = "";
+    option1.value = `0 0 ${groupId}`;
     option1.selected = "true";
     //option1.disabled = "true";
 
