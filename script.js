@@ -15,7 +15,6 @@ const numberOfGroups = 4;
 let matchResult = [];
 
 let keys = ["vs0","vs1","vs2","vs3","vs4","vs5"];
-let groupId;
 
 //Table containing results from certain groups. Last 6 properties indicate map wins vs certain players
 let results = [
@@ -59,9 +58,8 @@ showButton.addEventListener("click",function(){
     content.style.display = "flex";
     resetButton.style.display = "block";
     for(let i=0;i<numberOfGroups;i++){
-        groupId = i;
-        displayTable();
-        displayMatches();
+        displayTable(i);
+        displayMatches(i);
     }
 
     const playerSelects = document.querySelectorAll(".playerSelect");
@@ -70,15 +68,15 @@ showButton.addEventListener("click",function(){
     playerSelects.forEach(playerSelect => playerSelect.addEventListener("change",function(){
         matchResult[0] = +this.value.split(" ")[0];
         matchResult[1] = +this.value.split(" ")[1];
-        this.style.backgroundColor = "lightgreen";
-        this.disabled = "true";
+        //this.style.backgroundColor = "lightgreen";
+        //this.disabled = "true";
         this.nextElementSibling.removeAttribute("disabled");
     }));
 
     scoreSelects.forEach(scoreSelect => scoreSelect.addEventListener("change",function(){
         matchResult[2] = +this.value.split(" ")[0];
         matchResult[3] = +this.value.split(" ")[1];
-        this.disabled = "true";
+        //this.disabled = "true";
         update(matchResult,+this.value.split(" ")[2]);
     }));
 
@@ -99,11 +97,11 @@ showButton.addEventListener("click",function(){
     
 });
 
-function displayTable(){
+function displayTable(groupId){
 
     let sorted = results[groupId].slice();
 
-    sorted.sort(sortPlayers);
+    sorted = sortPlayers(sorted,groupId);
     
     let tableRow;
 
@@ -120,41 +118,47 @@ function displayTable(){
 
 }
 
-function displayMatches(){
+function displayMatches(groupId){
 
     let matchRow;
 
     for(let i=0;i<numberOfPlayers-1;i++){
         for(let j=i+1;j<numberOfPlayers;j++){
-            matchRow = createMatchRow(i,j);
+            matchRow = createMatchRow(i,j,groupId);
             matchesContainers[groupId].appendChild(matchRow);
         }
     }
 
 }
 
-function sortPlayers(a,b){
+function sortPlayers(sorted,groupId){
 
-    let aMapsWonVsB = results[groupId][b.id][keys[a.id]];
-    let bMapsWonVsA = results[groupId][a.id][keys[b.id]];
-    let aPoints = Math.floor(aMapsWonVsB/2)*3;
-    let bPoints = Math.floor(bMapsWonVsA/2)*3;
-    let aBalance = aMapsWonVsB - bMapsWonVsA;
-    let bBalance = bMapsWonVsA - aMapsWonVsB;
+    sorted.sort((a,b) => {
 
-    if(b.points-a.points!=0){
-        return b.points-a.points
-    }else if(b.balance-a.balance!=0){
-        return b.balance-a.balance;
-    }else if(b.wins-a.wins!=0){
-        return b.wins-a.wins;
-    }else if(bPoints-aPoints!=0){
-        return bPoints-aPoints;
-    }else if(bBalance-aBalance!=0){
-        return bBalance-aBalance;
-    }else{
-        return bMapsWonVsA-aMapsWonVsB;
-    }
+        let aMapsWonVsB = results[groupId][b.id][keys[a.id]];
+        let bMapsWonVsA = results[groupId][a.id][keys[b.id]];
+        let aPoints = Math.floor(aMapsWonVsB/2)*3;
+        let bPoints = Math.floor(bMapsWonVsA/2)*3;
+        let aBalance = aMapsWonVsB - bMapsWonVsA;
+        let bBalance = bMapsWonVsA - aMapsWonVsB;
+    
+        if(b.points-a.points!=0){
+            return b.points-a.points
+        }else if(b.balance-a.balance!=0){
+            return b.balance-a.balance;
+        }else if(b.wins-a.wins!=0){
+            return b.wins-a.wins;
+        }else if(bPoints-aPoints!=0){
+            return bPoints-aPoints;
+        }else if(bBalance-aBalance!=0){
+            return bBalance-aBalance;
+        }else{
+            return bMapsWonVsA-aMapsWonVsB;
+        }
+
+    });
+
+    return sorted;
 
 }
 
@@ -204,7 +208,7 @@ function createTableRow(playerData,color){
 
 }
 
-function createMatchRow(player1,player2){
+function createMatchRow(player1,player2,groupId){
 
     const matchRow = document.createElement("div");
     matchRow.classList.add("match");
@@ -220,7 +224,7 @@ function createMatchRow(player1,player2){
     option1.textContent = "Select winner";
     option1.value = "";
     option1.selected = "true";
-    option1.disabled = "true";
+    //option1.disabled = "true";
 
     let option2 = document.createElement("option");
     option2.textContent = results[groupId][player1].name;
@@ -242,7 +246,7 @@ function createMatchRow(player1,player2){
     option1.textContent = "Select score";
     option1.value = "";
     option1.selected = "true";
-    option1.disabled = "true";
+    //option1.disabled = "true";
 
     option2 = document.createElement("option");
     option2.textContent = "2-0";
@@ -264,26 +268,25 @@ function createMatchRow(player1,player2){
 
 }
 
-function update(matchResult,id){
+function update(matchResult,groupId){
 
     //Update winners score
-    results[id][matchResult[0]].points += 3;
-    results[id][matchResult[0]].wins += matchResult[2];
-    results[id][matchResult[0]].loses += matchResult[3];
-    results[id][matchResult[0]].balance = results[id][matchResult[0]].wins - results[id][matchResult[0]].loses;
-    results[id][matchResult[0]][keys[matchResult[1]]] += matchResult[2];
-    results[id][matchResult[0]].played += 1;
+    results[groupId][matchResult[0]].points += 3;
+    results[groupId][matchResult[0]].wins += matchResult[2];
+    results[groupId][matchResult[0]].loses += matchResult[3];
+    results[groupId][matchResult[0]].balance = results[groupId][matchResult[0]].wins - results[groupId][matchResult[0]].loses;
+    results[groupId][matchResult[0]][keys[matchResult[1]]] += matchResult[2];
+    results[groupId][matchResult[0]].played += 1;
 
     //Update losers score
-    results[id][matchResult[1]].wins += matchResult[3];
-    results[id][matchResult[1]].loses += matchResult[2];
-    results[id][matchResult[1]].balance = results[id][matchResult[1]].wins - results[id][matchResult[1]].loses;
-    results[id][matchResult[1]].played += 1;
+    results[groupId][matchResult[1]].wins += matchResult[3];
+    results[groupId][matchResult[1]].loses += matchResult[2];
+    results[groupId][matchResult[1]].balance = results[groupId][matchResult[1]].wins - results[groupId][matchResult[1]].loses;
+    results[groupId][matchResult[1]].played += 1;
 
     for(let i=0;i<6;i++){
-        tableContainers[id].removeChild(tableContainers[id].lastElementChild);
+        tableContainers[groupId].removeChild(tableContainers[groupId].lastElementChild);
     }
-    groupId = id;
-    displayTable();
+    displayTable(groupId);
 
 }
