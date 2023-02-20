@@ -19,6 +19,7 @@ body{
     background-color: dimgrey;
     display: none;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 5px;
 }
 .playerSetup > div{

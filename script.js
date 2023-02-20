@@ -3,19 +3,10 @@ const submitButton = document.querySelector(".submit");
 const groupSetup = document.querySelector(".groupSetup");
 const playerSetup = document.querySelector(".playerSetup");
 const content = document.querySelector(".content");
-const matchesContainers = document.querySelectorAll(".matchesContainer");
 const resetButton = document.querySelector(".reset");
-const showHideMatches = document.querySelectorAll(".showHide");
 const numberOfPlayers = 6;
 const numberOfMatches = (numberOfPlayers*(numberOfPlayers-1))/2;
 let numberOfGroups = 4;
-/*
-[0] - winner
-[1] - loser
-[2] - won maps
-[3] - lost maps
-*/
-let matchResult = [-1, 0, 0];
 
 let keys = ["vs0","vs1","vs2","vs3","vs4","vs5"];
 
@@ -176,25 +167,23 @@ submitButton.addEventListener("click",function(e){
         content.style.display = "flex";
         resetButton.style.display = "block";
         for(let i=0;i<numberOfGroups;i++){
-            displayTable(i);
+            displayGroups(i);
             displayMatches(i);
         }
     
-        const playerSelects = document.querySelectorAll(".playerSelect");
-        const scoreSelects = document.querySelectorAll(".scoreSelect");
         const applyButtons = document.querySelectorAll(".applyButton");
-    
-        playerSelects.forEach(playerSelect => playerSelect.addEventListener("change",function(){
-            matchResult[0] = +this.value;
-        }));
-    
-        scoreSelects.forEach(scoreSelect => scoreSelect.addEventListener("change",function(){
-            matchResult[1] = +this.value.split(" ")[0];
-            matchResult[2] = +this.value.split(" ")[1];
-        }));
+        const showHideMatches = document.querySelectorAll(".showHide");
     
         applyButtons.forEach(applyButton => applyButton.addEventListener("click",function(){
             const playerDivs = this.parentElement.querySelector(".matchup").querySelectorAll(".playerDiv");
+            let scoreSelect = this.previousElementSibling;
+            let playerSelect = scoreSelect.previousElementSibling;
+            /*
+            [0] - winner id
+            [1] - won maps
+            [2] - lost maps
+            */
+            let matchResult = [+playerSelect.value,+scoreSelect.value.split(" ")[0],+scoreSelect.value.split(" ")[1]];
             if((matchResult[1]==0 && matchResult[2]==0) || matchResult[0]==NO_WINNER){
                 playerDivs.forEach(div => div.style.backgroundColor="darkgray");
             }else{
@@ -205,7 +194,8 @@ submitButton.addEventListener("click",function(e){
                 });
             }
             updateMatches(matchResult,+this.value.split(" ")[0],+this.value.split(" ")[1]);
-            updatePlayers(+this.value.split(" ")[0]);
+            updatePlayers(+this.value.split(" ")[0]);         
+            console.log(matchResult);
         }));
     
         showHideMatches.forEach(showHide => showHide.addEventListener("click",function(){
@@ -227,9 +217,39 @@ submitButton.addEventListener("click",function(e){
     
 });
 
-function displayTable(groupId){
+function displayGroups(groupId){
 
-    let tableContainers = document.querySelectorAll(".tableContainer");
+    const group = document.createElement("div");
+    group.classList.add("group");
+    group.id = `group${groupId}`;
+
+    const header = document.createElement("div");
+    header.classList.add("header");
+    header.textContent = `Group ${groupId+1}`;
+
+    const tableContainer = document.createElement("div");
+    tableContainer.classList.add("tableContainer");
+    tableContainer.id = `tableContainer${groupId}`;
+
+    const showHideBar = document.createElement("div");
+    showHideBar.classList.add("showHide");
+    showHideBar.textContent = "Show";
+
+    const matchesContainer = document.createElement("div");
+    matchesContainer.classList.add("matchesContainer");
+
+    group.appendChild(header);
+    displayPlayers(groupId,tableContainer);
+    group.appendChild(tableContainer);
+    group.appendChild(showHideBar);
+    group.appendChild(matchesContainer);
+
+    content.appendChild(group);
+
+}
+
+function displayPlayers(groupId,tableContainer){
+
     let sorted = players[groupId].slice();
 
     sorted = sortPlayers(sorted,groupId);
@@ -244,13 +264,14 @@ function displayTable(groupId){
         }else{
             tableRow = createTableRow(sorted[i],"#fbdfdf");
         }
-        tableContainers[groupId].appendChild(tableRow);
+        tableContainer.appendChild(tableRow);
     }
 
 }
 
 function displayMatches(groupId){
 
+    const matchesContainers = document.querySelectorAll(".matchesContainer");
     let matchRow;
 
     for(let i=0;i<numberOfMatches;i++){
@@ -464,11 +485,16 @@ function updatePlayers(groupId){
         players[groupId][loserId].played += 1;
     }
 
-    for(let i=0;i<numberOfPlayers;i++){
-        tableContainers[groupId].removeChild(tableContainers[groupId].lastElementChild);
-    }
-    displayTable(groupId);
+    const tableContainerOld = document.querySelector(`#tableContainer${groupId}`);
+    const tableContainerNew = document.createElement("div");
+    tableContainerNew.classList.add("tableContainer");
+    tableContainerNew.id = `tableContainer${groupId}`;
 
+    const group = document.querySelector(`#group${groupId}`)
+
+    displayPlayers(groupId,tableContainerNew);
+    group.replaceChild(tableContainerNew,tableContainerOld);
+    
 }
 
 function resetGroup(groupId){
