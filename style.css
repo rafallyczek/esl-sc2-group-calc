@@ -8,6 +8,28 @@ body{
     flex-direction: column;
     gap: 5px;
 }
+.groupSetup{
+    background-color: darkgrey;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.playerSetup{
+    background-color: dimgrey;
+    display: none;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.playerSetup > div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+h2, h3{
+    margin: 10px 0;
+    text-align: center;
+}
 .content{
     display: none;
     justify-content: center;

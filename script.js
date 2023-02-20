@@ -1,13 +1,14 @@
 const NO_WINNER = -1;
-const showButton = document.querySelector(".show");
+const submitButton = document.querySelector(".submit");
+const groupSetup = document.querySelector(".groupSetup");
+const playerSetup = document.querySelector(".playerSetup");
 const content = document.querySelector(".content");
-const tableContainers = document.querySelectorAll(".tableContainer");
 const matchesContainers = document.querySelectorAll(".matchesContainer");
 const resetButton = document.querySelector(".reset");
 const showHideMatches = document.querySelectorAll(".showHide");
 const numberOfPlayers = 6;
 const numberOfMatches = (numberOfPlayers*(numberOfPlayers-1))/2;
-const numberOfGroups = 4;
+let numberOfGroups = 4;
 /*
 [0] - winner
 [1] - loser
@@ -126,63 +127,109 @@ let players = [
     ]
 ];
 
-showButton.addEventListener("click",function(){
+submitButton.addEventListener("click",function(e){
 
-    this.style.display = "none";
-    content.style.display = "flex";
-    resetButton.style.display = "block";
-    for(let i=0;i<numberOfGroups;i++){
-        displayTable(i);
-        displayMatches(i);
-    }
+    let phase = +e.target.value;
 
-    const playerSelects = document.querySelectorAll(".playerSelect");
-    const scoreSelects = document.querySelectorAll(".scoreSelect");
-    const applyButtons = document.querySelectorAll(".applyButton");
+    if(phase==0){
 
-    playerSelects.forEach(playerSelect => playerSelect.addEventListener("change",function(){
-        matchResult[0] = +this.value;
-    }));
+        this.value = 1;
+        groupSetup.style.display = "none";
+        playerSetup.style.display = "flex";
+        numberOfGroups = document.querySelector("#groups").value;
 
-    scoreSelects.forEach(scoreSelect => scoreSelect.addEventListener("change",function(){
-        matchResult[1] = +this.value.split(" ")[0];
-        matchResult[2] = +this.value.split(" ")[1];
-    }));
+        for(let i=0;i<numberOfGroups;i++){
 
-    applyButtons.forEach(applyButton => applyButton.addEventListener("click",function(){
-        const playerDivs = this.parentElement.querySelector(".matchup").querySelectorAll(".playerDiv");
-        if((matchResult[1]==0 && matchResult[2]==0) || matchResult[0]==NO_WINNER){
-            playerDivs.forEach(div => div.style.backgroundColor="darkgray");
-        }else{
-            playerDivs.forEach(div => {
-                if(div.getAttribute("value")==+matchResult[0]){
-                    div.style.backgroundColor="lightgreen";
-                }
-            });
+            const div = document.createElement("div");
+            div.style.backgroundColor = "darkgray";
+            div.style.padding = "5px";
+            const h3 = document.createElement("h3");
+            h3.textContent = `Group ${i+1}`;
+            div.appendChild(h3);
+
+            for(let j=0;j<numberOfPlayers;j++){
+
+                const label = document.createElement("label");
+                label.htmlFor = `player${j}`;
+                label.textContent = `Enter Player ${j+1} name:`;
+    
+                const playerInput = document.createElement("input");
+                playerInput.type = "text";
+                playerInput.name = `player${j}`;
+
+                div.appendChild(label);
+                div.appendChild(playerInput);
+
+            }
+
+            playerSetup.appendChild(div);
+
         }
-        updateMatches(matchResult,+this.value.split(" ")[0],+this.value.split(" ")[1]);
-        updatePlayers(+this.value.split(" ")[0]);
-    }));
 
-    showHideMatches.forEach(showHide => showHide.addEventListener("click",function(){
-        let isVisible = window.getComputedStyle(this.nextElementSibling).display=="none" ? false : true;
-        if(isVisible){
-            this.nextElementSibling.style.display = "none";
-            this.textContent = "Show";
-        }else{
-            this.nextElementSibling.style.display = "flex";
-            this.textContent = "Hide";
+        playerSetup.style.display = "flex";
+
+    }else if(phase==1){
+
+        this.style.display = "none";
+        playerSetup.style.display = "none";
+        document.querySelector("h2").style.display = "none";
+        content.style.display = "flex";
+        resetButton.style.display = "block";
+        for(let i=0;i<numberOfGroups;i++){
+            displayTable(i);
+            displayMatches(i);
         }
-    }));
+    
+        const playerSelects = document.querySelectorAll(".playerSelect");
+        const scoreSelects = document.querySelectorAll(".scoreSelect");
+        const applyButtons = document.querySelectorAll(".applyButton");
+    
+        playerSelects.forEach(playerSelect => playerSelect.addEventListener("change",function(){
+            matchResult[0] = +this.value;
+        }));
+    
+        scoreSelects.forEach(scoreSelect => scoreSelect.addEventListener("change",function(){
+            matchResult[1] = +this.value.split(" ")[0];
+            matchResult[2] = +this.value.split(" ")[1];
+        }));
+    
+        applyButtons.forEach(applyButton => applyButton.addEventListener("click",function(){
+            const playerDivs = this.parentElement.querySelector(".matchup").querySelectorAll(".playerDiv");
+            if((matchResult[1]==0 && matchResult[2]==0) || matchResult[0]==NO_WINNER){
+                playerDivs.forEach(div => div.style.backgroundColor="darkgray");
+            }else{
+                playerDivs.forEach(div => {
+                    if(div.getAttribute("value")==+matchResult[0]){
+                        div.style.backgroundColor="lightgreen";
+                    }
+                });
+            }
+            updateMatches(matchResult,+this.value.split(" ")[0],+this.value.split(" ")[1]);
+            updatePlayers(+this.value.split(" ")[0]);
+        }));
+    
+        showHideMatches.forEach(showHide => showHide.addEventListener("click",function(){
+            let isVisible = window.getComputedStyle(this.nextElementSibling).display=="none" ? false : true;
+            if(isVisible){
+                this.nextElementSibling.style.display = "none";
+                this.textContent = "Show";
+            }else{
+                this.nextElementSibling.style.display = "flex";
+                this.textContent = "Hide";
+            }
+        }));
+    
+        resetButton.addEventListener("click",function(){
+            location.reload();
+        });
 
-    resetButton.addEventListener("click",function(){
-        location.reload();
-    });
+    } 
     
 });
 
 function displayTable(groupId){
 
+    let tableContainers = document.querySelectorAll(".tableContainer");
     let sorted = players[groupId].slice();
 
     sorted = sortPlayers(sorted,groupId);
