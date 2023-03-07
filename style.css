@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+/* ------------------
+     GLOBAL STYLES 
+   ------------------ */
+
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
 body{
     min-height: 100vh;
     background-color: dimgray;
@@ -9,29 +19,47 @@ body{
     flex-direction: column;
     gap: 5px;
 }
-.groupSetup{
-    background-color: darkgrey;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-.playerSetup{
-    background-color: dimgrey;
-    display: none;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 5px;
-}
-.playerSetup > div{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-h2, h3{
-    margin: 10px 0;
+
+/* ------------------
+       TYPOGRAPHY 
+   ------------------ */
+
+.text-center{
     text-align: center;
 }
+
+select:disabled{
+    color: black;
+}
+
+.showHide:hover{
+    color: white;
+}
+
+/* ------------------
+         LAYOUT 
+   ------------------ */
+
+.setup{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+}
+
+.submit{
+    padding: .5em 1em;
+    grid-column: 4 / span 2;
+    width: 100px;
+    justify-self: center;
+}
+
+.setup > div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    grid-column: span 2;
+}
+
 .content{
     display: none;
     justify-content: center;
@@ -40,6 +68,7 @@ h2, h3{
     gap: 10px;
     padding: 10px;
 }
+
 .group{
     display: flex;
     justify-content: center;
@@ -48,77 +77,99 @@ h2, h3{
     gap: 5px;
     margin-bottom: auto;
 }
+
 .header{
-    background-color: darkgray;
     min-width: 476px;
     padding: 5px;
-    text-align: center;
     font-weight: bold;
 }
+
 .tableContainer{
     display: flex;
     flex-direction: column;
     gap: 2px;
 }
+
 .tableRow{
     display: flex;
     gap: 2px;
 }
+
 .tableRow > div{
     padding: 5px;
     min-width: 110px;
 }
-.tableRow:first-child > div{
-    background-color: darkgray;
-}
+
 .showHide{
     min-width: 476px;
-    background-color: darkgray;
     padding: 5px;
-    text-align: center;
     cursor: pointer;
 }
-.showHide:hover{
-    color: white;
-}
+
 .matchesContainer{
     display: none;
     flex-direction: column;
     gap: 5px;
 }
+
 .match{
     display: flex;
     gap: 5px;
 }
+
 .matchup{
     min-width: 220px; 
     display: flex;  
     gap: 2px;
 }
-.matchup > div{
-    background-color: darkgray;
-    padding: 5px;
-    text-align: center;
-}
+
 .playerDiv{
     min-width: 100px;
 }
+
 .playerSelect, .scoreSelect{
     width: 80px;
     padding: 5px;
 }
-.applyButton{
-    cursor: pointer;
-}
+
 .reset{
-    padding: 5px 10px;
-    cursor: pointer;
-    margin-top: 10px;
     display: none;
+    padding: .5em 1em;
+    margin-top: 10px;
 }
+
+/* ------------------
+       COMPONENTS 
+   ------------------ */
+
 select{
     cursor: pointer;
 }
-select:disabled{
-    color: black;
+
+button{
+    cursor: pointer;
+}
+
+input[type="submit"]{
+    cursor: pointer;
+}
+
+.group-setup{
+    padding: 5px;
+}
+
+.matchup > div{
+    padding: 5px;
+}
+
+h2, h3{
+    margin: 10px 0;
+}
+
+/* ------------------
+        COLORING 
+   ------------------ */
+
+.bg-clr-gray{
+    background-color: darkgray;
 }

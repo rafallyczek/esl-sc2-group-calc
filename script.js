@@ -1,12 +1,10 @@
 const NO_WINNER = -1;
-const submitButton = document.querySelector(".submit");
-const groupSetup = document.querySelector(".groupSetup");
-const playerSetup = document.querySelector(".playerSetup");
+const submit = document.querySelector(".submit");
 const content = document.querySelector(".content");
-const resetButton = document.querySelector(".reset");
+const reset = document.querySelector(".reset");
 const numberOfPlayers = 6;
 const numberOfMatches = (numberOfPlayers*(numberOfPlayers-1))/2;
-let numberOfGroups = 4;
+const numberOfGroups = 4;
 
 let keys = ["vs0","vs1","vs2","vs3","vs4","vs5"];
 
@@ -85,136 +83,92 @@ let matches = [
 //Array containing results from certain groups. Last 6 properties indicate map wins vs certain players
 let players = [
     [
-        {id: 0, name: "RagnaroK", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 1, name: "Dark", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 2, name: "Oliveira", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 3, name: "Neeb", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 4, name: "Cure", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 5, name: "Clem", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}
+        {id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}
     ],
     [
-        {id: 0, name: "Reynor", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 1, name: "GuMiho", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 2, name: "Creator", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 3, name: "Spirit", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 4, name: "ShoWTimE", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 5, name: "Astrea", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}
+        {id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}
     ],
     [
-        {id: 0, name: "Serral", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 1, name: "herO", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 2, name: "SpeCial", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 3, name: "Solar", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 4, name: "DRG", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 5, name: "Elazer", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}
+        {id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}
     ],
     [
-        {id: 0, name: "Maru", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 1, name: "HeRoMaRinE", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 2, name: "ByuN", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 3, name: "Classic", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 4, name: "Lambo", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 5, name: "Bunny", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}
+        {id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
+        {id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}
     ]
 ];
 
-submitButton.addEventListener("click",function(e){
+submit.addEventListener("click",function(){
 
-    let phase = +e.target.value;
+    document.querySelector(".setup-header").style.display = "none";
+    document.querySelector(".setup").style.display = "none";
+    content.style.display = "flex";
+    reset.style.display = "block";
+    for(let i=0;i<numberOfGroups;i++){
+        displayGroups(i);
+        displayMatches(i);
+    }
 
-    if(phase==0){
-
-        this.value = 1;
-        groupSetup.style.display = "none";
-        playerSetup.style.display = "flex";
-        numberOfGroups = document.querySelector("#groups").value;
-
-        for(let i=0;i<numberOfGroups;i++){
-
-            const div = document.createElement("div");
-            div.style.backgroundColor = "darkgray";
-            div.style.padding = "5px";
-            const h3 = document.createElement("h3");
-            h3.textContent = `Group ${i+1}`;
-            div.appendChild(h3);
-
-            for(let j=0;j<numberOfPlayers;j++){
-
-                const label = document.createElement("label");
-                label.htmlFor = `player${j}`;
-                label.textContent = `Enter Player ${j+1} name:`;
+    const applyButtons = document.querySelectorAll(".applyButton");
+    const showHideMatches = document.querySelectorAll(".showHide");
     
-                const playerInput = document.createElement("input");
-                playerInput.type = "text";
-                playerInput.name = `player${j}`;
-
-                div.appendChild(label);
-                div.appendChild(playerInput);
-
-            }
-
-            playerSetup.appendChild(div);
-
+    applyButtons.forEach(applyButton => applyButton.addEventListener("click",function(){
+        const playerDivs = this.parentElement.querySelector(".matchup").querySelectorAll(".playerDiv");
+        let scoreSelect = this.previousElementSibling;
+        let playerSelect = scoreSelect.previousElementSibling;
+        /*
+        [0] - winner id
+        [1] - won maps
+        [2] - lost maps
+        */
+        let matchResult = [+playerSelect.value,+scoreSelect.value.split(" ")[0],+scoreSelect.value.split(" ")[1]];
+        if((matchResult[1]==0 && matchResult[2]==0) || matchResult[0]==NO_WINNER){
+            playerDivs.forEach(div => div.style.backgroundColor="darkgray");
+        }else{
+            playerDivs.forEach(div => {
+                if(div.getAttribute("value")==+matchResult[0]){
+                    div.style.backgroundColor="lightgreen";
+                }
+            });
         }
+        updateMatches(matchResult,+this.value.split(" ")[0],+this.value.split(" ")[1]);
+        updatePlayers(+this.value.split(" ")[0]);         
+        console.log(matchResult);
+    }));
 
-        playerSetup.style.display = "flex";
-
-    }else if(phase==1){
-
-        this.style.display = "none";
-        playerSetup.style.display = "none";
-        document.querySelector("h2").style.display = "none";
-        content.style.display = "flex";
-        resetButton.style.display = "block";
-        for(let i=0;i<numberOfGroups;i++){
-            displayGroups(i);
-            displayMatches(i);
+    showHideMatches.forEach(showHide => showHide.addEventListener("click",function(){
+        let isVisible = window.getComputedStyle(this.nextElementSibling).display=="none" ? false : true;
+        if(isVisible){
+            this.nextElementSibling.style.display = "none";
+            this.textContent = "Show";
+        }else{
+            this.nextElementSibling.style.display = "flex";
+            this.textContent = "Hide";
         }
-    
-        const applyButtons = document.querySelectorAll(".applyButton");
-        const showHideMatches = document.querySelectorAll(".showHide");
-    
-        applyButtons.forEach(applyButton => applyButton.addEventListener("click",function(){
-            const playerDivs = this.parentElement.querySelector(".matchup").querySelectorAll(".playerDiv");
-            let scoreSelect = this.previousElementSibling;
-            let playerSelect = scoreSelect.previousElementSibling;
-            /*
-            [0] - winner id
-            [1] - won maps
-            [2] - lost maps
-            */
-            let matchResult = [+playerSelect.value,+scoreSelect.value.split(" ")[0],+scoreSelect.value.split(" ")[1]];
-            if((matchResult[1]==0 && matchResult[2]==0) || matchResult[0]==NO_WINNER){
-                playerDivs.forEach(div => div.style.backgroundColor="darkgray");
-            }else{
-                playerDivs.forEach(div => {
-                    if(div.getAttribute("value")==+matchResult[0]){
-                        div.style.backgroundColor="lightgreen";
-                    }
-                });
-            }
-            updateMatches(matchResult,+this.value.split(" ")[0],+this.value.split(" ")[1]);
-            updatePlayers(+this.value.split(" ")[0]);         
-            console.log(matchResult);
-        }));
-    
-        showHideMatches.forEach(showHide => showHide.addEventListener("click",function(){
-            let isVisible = window.getComputedStyle(this.nextElementSibling).display=="none" ? false : true;
-            if(isVisible){
-                this.nextElementSibling.style.display = "none";
-                this.textContent = "Show";
-            }else{
-                this.nextElementSibling.style.display = "flex";
-                this.textContent = "Hide";
-            }
-        }));
-    
-        resetButton.addEventListener("click",function(){
-            location.reload();
-        });
+    }));
 
-    } 
-    
+    reset.addEventListener("click",function(){
+        location.reload();
+    });
+
 });
 
 function displayGroups(groupId){
@@ -225,6 +179,8 @@ function displayGroups(groupId){
 
     const header = document.createElement("div");
     header.classList.add("header");
+    header.classList.add("bg-clr-gray");
+    header.classList.add("text-center");
     header.textContent = `Group ${groupId+1}`;
 
     const tableContainer = document.createElement("div");
@@ -233,6 +189,8 @@ function displayGroups(groupId){
 
     const showHideBar = document.createElement("div");
     showHideBar.classList.add("showHide");
+    showHideBar.classList.add("bg-clr-gray");
+    showHideBar.classList.add("text-center");
     showHideBar.textContent = "Show";
 
     const matchesContainer = document.createElement("div");
@@ -373,15 +331,21 @@ function createMatchRow(groupId,matchId){
     playerDiv1.textContent = players[groupId][player1].name;
     playerDiv1.setAttribute("value",player1);
     playerDiv1.classList.add("playerDiv");
+    playerDiv1.classList.add("bg-clr-gray");
+    playerDiv1.classList.add("text-center");
 
     const vsDiv = document.createElement("div");
     vsDiv.textContent = "vs";
+    vsDiv.classList.add("bg-clr-gray");
+    vsDiv.classList.add("text-center");
 
     const playerDiv2 = document.createElement("div");
     playerDiv2.textContent = players[groupId][player2].name;
     playerDiv2.setAttribute("value",player2);
     playerDiv2.classList.add("playerDiv");
-
+    playerDiv2.classList.add("bg-clr-gray");
+    playerDiv2.classList.add("text-center");
+    
     matchupDiv.appendChild(playerDiv1);
     matchupDiv.appendChild(vsDiv);
     matchupDiv.appendChild(playerDiv2);
