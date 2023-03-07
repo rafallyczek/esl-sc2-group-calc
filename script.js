@@ -1,10 +1,10 @@
 const NO_WINNER = -1;
+const PLAYERS_PER_GROUP = 6;
+const NUMBER_OF_MATCHES = (PLAYERS_PER_GROUP*(PLAYERS_PER_GROUP-1))/2;
+const NUMBER_OF_GROUPS = 4;
 const submit = document.querySelector(".submit");
 const content = document.querySelector(".content");
 const reset = document.querySelector(".reset");
-const numberOfPlayers = 6;
-const numberOfMatches = (numberOfPlayers*(numberOfPlayers-1))/2;
-const numberOfGroups = 4;
 
 let keys = ["vs0","vs1","vs2","vs3","vs4","vs5"];
 
@@ -122,7 +122,8 @@ submit.addEventListener("click",function(){
     document.querySelector(".setup").style.display = "none";
     content.style.display = "flex";
     reset.style.display = "block";
-    for(let i=0;i<numberOfGroups;i++){
+    for(let i=0;i<NUMBER_OF_GROUPS;i++){
+        populateGroups(i);
         displayGroups(i);
         displayMatches(i);
     }
@@ -150,8 +151,8 @@ submit.addEventListener("click",function(){
             });
         }
         updateMatches(matchResult,+this.value.split(" ")[0],+this.value.split(" ")[1]);
-        updatePlayers(+this.value.split(" ")[0]);         
-        console.log(matchResult);
+        updatePlayers(+this.value.split(" ")[0]);
+
     }));
 
     showHideMatches.forEach(showHide => showHide.addEventListener("click",function(){
@@ -170,6 +171,21 @@ submit.addEventListener("click",function(){
     });
 
 });
+
+function populateGroups(groupId){
+
+    let player;
+    for(let i=0;i<6;i++){
+        player = document.querySelector(`#group${groupId+1}-player${i+1}`);
+        if(player.value==""){
+            players[groupId][i].name = `Player ${i}`;
+        }else{
+            players[groupId][i].name = player.value;
+        }
+        
+    }
+
+}
 
 function displayGroups(groupId){
 
@@ -214,7 +230,7 @@ function displayPlayers(groupId,tableContainer){
     
     let tableRow;
 
-    for(let i=0;i<numberOfPlayers;i++){
+    for(let i=0;i<PLAYERS_PER_GROUP;i++){
         if(i==0){
             tableRow = createTableRow(sorted[i],"#ddf4dd");
         }else if(i<3){
@@ -232,7 +248,7 @@ function displayMatches(groupId){
     const matchesContainers = document.querySelectorAll(".matchesContainer");
     let matchRow;
 
-    for(let i=0;i<numberOfMatches;i++){
+    for(let i=0;i<NUMBER_OF_MATCHES;i++){
         matchRow = createMatchRow(groupId,i);
         matchesContainers[groupId].appendChild(matchRow);
     }
@@ -243,8 +259,8 @@ function sortPlayers(sorted,groupId){
 
     sorted.sort((a,b) => {
 
-        let aMapsWonVsB = players[groupId][b.id][keys[a.id]];
-        let bMapsWonVsA = players[groupId][a.id][keys[b.id]];
+        let aMapsWonVsB = players[groupId][a.id][keys[b.id]];
+        let bMapsWonVsA = players[groupId][b.id][keys[a.id]];
         let aPoints = Math.floor(aMapsWonVsB/2)*3;
         let bPoints = Math.floor(bMapsWonVsA/2)*3;
         let aBalance = aMapsWonVsB - bMapsWonVsA;
@@ -420,7 +436,7 @@ function updatePlayers(groupId){
     resetGroup(groupId);
     let winnerId;
     let loserId;
-    for(let i=0;i<numberOfMatches;i++){
+    for(let i=0;i<NUMBER_OF_MATCHES;i++){
 
         if(matches[groupId][i].winner==NO_WINNER){
             continue;
@@ -463,7 +479,7 @@ function updatePlayers(groupId){
 
 function resetGroup(groupId){
 
-    for(let i=0;i<numberOfPlayers;i++){
+    for(let i=0;i<PLAYERS_PER_GROUP;i++){
         players[groupId][i].played = 0;
         players[groupId][i].wins = 0;
         players[groupId][i].loses = 0;
