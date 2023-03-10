@@ -179,3 +179,15 @@ h2, h3{
 .bg-clr-gray{
     background-color: darkgray;
 }
+
+.bg-clr-green{
+    background-color: rgb(221, 244, 221);
+}
+
+.bg-clr-yellow{
+    background-color: rgb(229, 244, 198);
+}
+
+.bg-clr-red{
+    background-color: rgb(251, 223, 223);
+}

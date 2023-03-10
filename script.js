@@ -80,39 +80,40 @@ let matches = [
     ]
 ];
 
-//Array containing results from certain groups. Last 6 properties indicate map wins vs certain players
+//Array containing player statistics. Properties named "vs" indicate map wins vs certain players, canUp property shows whether player can advance in a group,
+//bgc property indicates background-color stating standing in the group ( 0 - undetermined, 1 - first place, 2 - second or third place, 3 - eliminated )
 let players = [
     [
-        {id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}
+        {id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}
     ],
     [
-        {id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}
+        {id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}
     ],
     [
-        {id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}
+        {id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}
     ],
     [
-        {id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}, 
-        {id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0}
+        {id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}, 
+        {id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, canUp: true, bgc: 0}
     ]
 ];
 
@@ -123,8 +124,8 @@ submit.addEventListener("click",function(){
     content.style.display = "flex";
     reset.style.display = "block";
     for(let i=0;i<NUMBER_OF_GROUPS;i++){
-        populateGroups(i);
-        displayGroups(i);
+        setPlayerNames(i);
+        displayGroup(i);
         displayMatches(i);
     }
 
@@ -172,7 +173,7 @@ submit.addEventListener("click",function(){
 
 });
 
-function populateGroups(groupId){
+function setPlayerNames(groupId){
 
     let player;
     for(let i=0;i<6;i++){
@@ -187,7 +188,7 @@ function populateGroups(groupId){
 
 }
 
-function displayGroups(groupId){
+function displayGroup(groupId){
 
     const group = document.createElement("div");
     group.classList.add("group");
@@ -224,20 +225,22 @@ function displayGroups(groupId){
 
 function displayPlayers(groupId,tableContainer){
 
-    let sorted = players[groupId].slice();
+    let sorted = [...players[groupId]];
 
-    sorted = sortPlayers(sorted,groupId);
+    sortPlayers(sorted,groupId);
+    checkIfCanUp(sorted,groupId);
+    //debug
+    if(groupId==0){
+        console.log("Sorted table:")
+        console.table(sorted);
+        console.log("Players table:")
+        console.table(players[groupId]);
+    }
     
     let tableRow;
 
     for(let i=0;i<PLAYERS_PER_GROUP;i++){
-        if(i==0){
-            tableRow = createTableRow(sorted[i],"#ddf4dd");
-        }else if(i<3){
-            tableRow = createTableRow(sorted[i],"#e5f4c6");
-        }else{
-            tableRow = createTableRow(sorted[i],"#fbdfdf");
-        }
+        tableRow = createTableRow(sorted[i]);
         tableContainer.appendChild(tableRow);
     }
 
@@ -282,17 +285,115 @@ function sortPlayers(sorted,groupId){
 
     });
 
-    return sorted;
+}
+
+//Check if certain players can still advance place up in group
+function checkIfCanUp(sorted,groupId){
+
+    let checked = [...sorted];
+
+    for(let i=0;i<checked.length-1;i++){
+    
+        //Maximum number of points that player can still get
+        let maxPoints = 15 - Math.floor(checked[i].loses/2)*3;
+        //Maximum number of map wins that player can still get
+        let maxWins = 10 - checked[i].loses;
+        //Maximum balance of map wins/loses that player can still have
+        let maxBalance = maxWins - checked[i].loses;
+        //Did compared players already play each other?
+        let playedEachOther = (checked[i][keys[i+1]]>0 || checked[i+1][keys[i]]>0);
+        //Map balance of opponent
+        let opBalance = checked[i+1].balance;
+        //If compared players did't play each other yet, distract 2 points from balance (comparation assumes checked player wins)
+        if(!playedEachOther){
+            opBalance-=2;
+        }
+        //Maps player won vs opponent
+        let playerMapsWonVsOp = checked[i][keys[i+1]];
+        //Maps opponent won vs player
+        let opMapsWonVsPlayer = checked[i+1][keys[i]];
+        //Points player has vs opponent
+        let playerPointsVsOp = Math.floor(playerMapsWonVsOp/2)*3;
+        //Points opponent has vs player
+        let opPointsVsPlayer = Math.floor(opMapsWonVsPlayer/2)*3;
+        //Balance player has vs opponent
+        let playerBalanceVsOp = playerMapsWonVsOp - opMapsWonVsPlayer;
+        //Balance opponent has vs player
+        let opBalanceVsPlayer = opMapsWonVsPlayer - playerMapsWonVsOp;
+
+        //Can't advance place up (won't have enough points)
+        if(maxPoints<checked[i+1].points){
+            players[groupId][i].canUp = false;
+
+        //Tie in points    
+        }else if(maxPoints==checked[i+1].points){
+
+            //Can't advance place up (won't have enought balance)
+            if(maxBalance<opBalance){
+                players[groupId][i].canUp = false;
+
+            //Tie in balance
+            }else if(maxBalance==opBalance){
+
+                //Can't advance place up (won't have enought map wins)
+                if(maxWins<checked[i+1].wins){
+                    players[groupId][i].canUp = false;
+
+                //Tie in map wins   
+                }else if(maxWins==checked[i+1].wins){
+
+                    //Can't advance place up (won't have enought points vs opponent)
+                    if(playerPointsVsOp<opPointsVsPlayer){
+                        players[groupId][i].canUp = false;
+
+                    //Tie in points vs opponent      
+                    }else if(playerPointsVsOp<opPointsVsPlayer){
+
+                        //Can't advance place up (won't have enought balance vs opponent)
+                        if(playerBalanceVsOp<opBalanceVsPlayer){
+                            players[groupId][i].canUp = false;
+
+                        //Tie in balance vs opponent 
+                        }else if(playerBalanceVsOp==opBalanceVsPlayer){
+
+                            //Can't advance place up (won't have enought map wins vs opponent)
+                            if(playerMapsWonVsOp<opMapsWonVsPlayer){
+                                players[groupId][i].canUp = false;
+                            }
+                            //Further ties are resolved through tie-breaker match
+
+                        }
+
+                    }
+
+                }
+
+            }
+            
+        }
+
+    }
 
 }
 
-function createTableRow(playerData,color){
+function createTableRow(playerData){
+
+    let colorClass;
+    if(playerData.bgc==0){
+        colorClass = "bg-clr-gray";
+    }else if(playerData.bgc==1){
+        colorClass = "bg-clr-green";
+    }else if(playerData.bgc==2){
+        colorClass = "bg-clr-yellow";
+    }else{
+        colorClass = "bg-clr-red";
+    }
 
     const tableRow = document.createElement("div");
 
     const nameDiv = document.createElement("div");
     nameDiv.textContent = playerData.name;
-    nameDiv.style.backgroundColor = color;
+    nameDiv.classList.add(colorClass);
 
     let wins = 0;
 
@@ -308,12 +409,12 @@ function createTableRow(playerData,color){
 
     const matchScoreDiv = document.createElement("div");
     matchScoreDiv.textContent = `${wins}-${loses}`;
-    matchScoreDiv.style.backgroundColor = color;
+    matchScoreDiv.classList.add(colorClass);
     matchScoreDiv.style.fontWeight = "bold";
 
     const mapScoreDiv = document.createElement("div");
     mapScoreDiv.textContent = `${playerData.wins}-${playerData.loses}`;
-    mapScoreDiv.style.backgroundColor = color;
+    mapScoreDiv.classList.add(colorClass);
 
     const balanceDiv = document.createElement("div");
     if(playerData.balance>0){
@@ -321,7 +422,7 @@ function createTableRow(playerData,color){
     }else{
         balanceDiv.textContent = playerData.balance;
     }
-    balanceDiv.style.backgroundColor = color;
+    balanceDiv.classList.add(colorClass);
 
     tableRow.appendChild(nameDiv);
     tableRow.appendChild(matchScoreDiv);
