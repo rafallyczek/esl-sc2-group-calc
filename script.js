@@ -288,7 +288,7 @@ function sortPlayers(sorted,groupId){
 
 }
 
-//Check if certain players can still advance place up in group
+//Calculate max place that certain players can still get
 function checkForMaxPlace(sorted,groupId){
 
     let checked = [...sorted];
