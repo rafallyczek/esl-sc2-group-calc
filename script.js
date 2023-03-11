@@ -296,6 +296,9 @@ function checkForMaxPlace(sorted,groupId){
 
     for(let i=0;i<checked.length-1;i++){
 
+        console.log(players[groupId][checked[i].id]);
+        console.log(checked[i]);
+
         for(let j=i+1;j<checked.length;j++){
         
             //Maximum number of points that player can still get
@@ -327,7 +330,7 @@ function checkForMaxPlace(sorted,groupId){
 
             //Can't advance against j-th opponent (won't have enough points)
             if(maxPoints<checked[j].points){
-                players[groupId][i].maxPlace = j-1;
+                players[groupId][checked[i].id].maxPlace = j-1;
                 break;
 
             //Tie in points    
@@ -335,7 +338,7 @@ function checkForMaxPlace(sorted,groupId){
 
                 //Can't advance against j-th opponent (won't have enought balance)
                 if(maxBalance<opBalance){
-                    players[groupId][i].maxPlace = j-1;
+                    players[groupId][checked[i].id].maxPlace = j-1;
                     break;
 
                 //Tie in balance
@@ -343,7 +346,7 @@ function checkForMaxPlace(sorted,groupId){
 
                     //Can't advance against j-th opponent (won't have enought map wins)
                     if(maxWins<checked[j].wins){
-                        players[groupId][i].maxPlace = j-1;
+                        players[groupId][checked[i].id].maxPlace = j-1;
                         break;
 
                     //Tie in map wins   
@@ -351,7 +354,7 @@ function checkForMaxPlace(sorted,groupId){
 
                         //Can't advance against j-th opponent (won't have enought points vs opponent)
                         if(playerPointsVsOp<opPointsVsPlayer){
-                            players[groupId][i].maxPlace = j-1;
+                            players[groupId][checked[i].id].maxPlace = j-1;
                             break;
 
                         //Tie in points vs opponent      
@@ -359,7 +362,7 @@ function checkForMaxPlace(sorted,groupId){
 
                             //Can't advance against j-th opponent (won't have enought balance vs opponent)
                             if(playerBalanceVsOp<opBalanceVsPlayer){
-                                players[groupId][i].maxPlace = j-1;
+                                players[groupId][checked[i].id].maxPlace = j-1;
                                 break;
 
                             //Tie in balance vs opponent 
@@ -367,7 +370,7 @@ function checkForMaxPlace(sorted,groupId){
 
                                 //Can't advance against j-th opponent (won't have enought map wins vs opponent)
                                 if(playerMapsWonVsOp<opMapsWonVsPlayer){
-                                    players[groupId][i].maxPlace = j-1;
+                                    players[groupId][checked[i].id].maxPlace = j-1;
                                     break;
                                 }
                                 //Further ties are resolved through tie-breaker match
