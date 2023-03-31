@@ -81,40 +81,39 @@ let matches = [
 ];
 
 // Array containing player statistics. Properties named "vs" indicate map wins vs certain players, maxPlace property shows maximum place that player can still get
-// (order is reversed so 5 means 1st place and 0 means last place), bgc property indicates background-color stating standing in the group ( 0 - undetermined,
-// 1 - first place, 2 - second or third place, 3 - eliminated )
+// bgc property indicates background-color stating standing in the group ( 0 - undetermined, 1 - first place, 2 - second or third place, 3 - eliminated )
 let players = [
     [
-        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }
+        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }
     ],
     [
-        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }
+        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }
     ],
     [
-        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }
+        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }
     ],
     [
-        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }, 
-        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 5, bgc: 0 }
+        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
+        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }
     ]
 ];
 
@@ -248,8 +247,8 @@ function displayPlayers(groupId, tableContainer) {
     if (groupId == 0) {
         console.log("Sorted table:");
         console.table(sorted);
-        console.log("Players table:");
-        console.table(players[groupId]);
+        // console.log("Players table:");
+        // console.table(players[groupId]);
     }
 
     let tableRow;
@@ -269,7 +268,7 @@ function displayMatches(groupId) {
         matchesContainers[groupId].appendChild(matchRow);
     }
 }
-
+// ["vs0", "vs1", "vs2", "vs3", "vs4", "vs5"]
 function sortPlayers(sorted, groupId) {
     sorted.sort((a, b) => {
         let aMapsWonVsB = players[groupId][a.id][keys[b.id]];
@@ -301,8 +300,8 @@ function checkForMaxPlace(sorted, groupId) {
     checked.reverse();
 
     for (let i = 0; i < checked.length - 1; i++) {
-        console.log(players[groupId][checked[i].id]);
-        console.log(checked[i]);
+        // console.log(players[groupId][checked[i].id]);
+        // console.log(checked[i]);
 
         for (let j = i + 1; j < checked.length; j++) {
             // Maximum number of points that player can still get
@@ -335,28 +334,28 @@ function checkForMaxPlace(sorted, groupId) {
 
             // Can't advance against j-th opponent (won't have enough points)
             if (maxPoints < checked[j].points) {
-                players[groupId][checked[i].id].maxPlace = j - 1;
+                players[groupId][checked[i].id].maxPlace = 6 - (j - 1);
                 break;
 
                 // Tie in points
             } else if (maxPoints == checked[j].points) {
                 // Can't advance against j-th opponent (won't have enought balance)
                 if (maxBalance < opBalance) {
-                    players[groupId][checked[i].id].maxPlace = j - 1;
+                    players[groupId][checked[i].id].maxPlace = 6 - (j - 1);
                     break;
 
                     // Tie in balance
                 } else if (maxBalance == opBalance) {
                     // Can't advance against j-th opponent (won't have enought map wins)
                     if (maxWins < checked[j].wins) {
-                        players[groupId][checked[i].id].maxPlace = j - 1;
+                        players[groupId][checked[i].id].maxPlace = 6 - (j - 1);
                         break;
 
                         // Tie in map wins
                     } else if (maxWins == checked[j].wins) {
                         // Can't advance against j-th opponent (won't have enought points vs opponent)
                         if (playerPointsVsOp < opPointsVsPlayer) {
-                            players[groupId][checked[i].id].maxPlace = j - 1;
+                            players[groupId][checked[i].id].maxPlace = 6 - (j - 1);
                             break;
 
                             // Tie in points vs opponent
@@ -364,7 +363,7 @@ function checkForMaxPlace(sorted, groupId) {
                             // Can't advance against j-th opponent (won't have enought balance vs opponent)
                             if (playerBalanceVsOp < opBalanceVsPlayer) {
                                 players[groupId][checked[i].id].maxPlace =
-                                    j - 1;
+                                6 - (j - 1);
                                 break;
 
                                 // Tie in balance vs opponent
@@ -372,7 +371,7 @@ function checkForMaxPlace(sorted, groupId) {
                                 // Can't advance against j-th opponent (won't have enought map wins vs opponent)
                                 if (playerMapsWonVsOp < opMapsWonVsPlayer) {
                                     players[groupId][checked[i].id].maxPlace =
-                                        j - 1;
+                                    6 - (j - 1);
                                     break;
                                 }
                                 // Further ties are resolved through tie-breaker match
@@ -564,7 +563,7 @@ function updatePlayers(groupId) {
         players[groupId][winnerId].balance =
             players[groupId][winnerId].wins - players[groupId][winnerId].loses;
         players[groupId][winnerId][keys[loserId]] +=
-            matches[groupId][i].score.split(" ")[0];
+            +matches[groupId][i].score.split(" ")[0];
         players[groupId][winnerId].played += 1;
 
         // Update losers score
