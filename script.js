@@ -4,7 +4,7 @@ const NUMBER_OF_MATCHES = (PLAYERS_PER_GROUP * (PLAYERS_PER_GROUP - 1)) / 2;
 const NUMBER_OF_GROUPS = 4;
 const submit = document.querySelector(".submit");
 const content = document.querySelector(".content");
-const reset = document.querySelector(".reset");
+const back = document.querySelector("#back-to-setup");
 
 let keys = ["vs0", "vs1", "vs2", "vs3", "vs4", "vs5"];
 
@@ -80,40 +80,39 @@ let matches = [
     ],
 ];
 
-// Array containing player statistics. Properties named "vs" indicate map wins vs certain players, maxPlace property shows maximum place that player can still get
-// bgc property indicates background-color stating standing in the group ( 0 - undetermined, 1 - first place, 2 - second or third place, 3 - eliminated )
+// Array containing player statistics. Properties named "vs" indicate map wins vs certain players
 let players = [
     [
-        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }
+        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }
     ],
     [
-        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }
+        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }
     ],
     [
-        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }
+        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }
     ],
     [
-        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }, 
-        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0, maxPlace: 1, bgc: 0 }
+        { id: 0, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 1, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 2, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 3, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 4, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }, 
+        { id: 5, name: "", played: 0, wins: 0, loses: 0, balance: 0, points: 0, vs0: 0, vs1: 0, vs2: 0, vs3: 0, vs4: 0, vs5: 0 }
     ]
 ];
 
@@ -121,7 +120,7 @@ submit.addEventListener("click", function () {
     document.querySelector(".setup-header").style.display = "none";
     document.querySelector(".setup").style.display = "none";
     content.style.display = "flex";
-    reset.style.display = "block";
+    back.style.display = "block";
     for (let i = 0; i < NUMBER_OF_GROUPS; i++) {
         setPlayerNames(i);
         displayGroup(i);
@@ -188,7 +187,7 @@ submit.addEventListener("click", function () {
         })
     );
 
-    reset.addEventListener("click", function () {
+    back.addEventListener("click", function () {
         location.reload();
     });
 });
@@ -210,6 +209,27 @@ function displayGroup(groupId) {
     group.classList.add("group");
     group.id = `group${groupId}`;
 
+    const reset = document.createElement("button");
+    reset.textContent = "Reset group";
+    reset.classList.add("reset");
+    reset.style.display = "block";
+    reset.addEventListener("click", function () {
+        for(let i=0;i<NUMBER_OF_MATCHES;i++){
+            updateMatches(
+                [NO_WINNER, 0, 0],
+                groupId,
+                i
+            );
+        }
+        updatePlayers(groupId);
+        const matchesContainers = document.querySelectorAll(".matchesContainer");
+        const matches = matchesContainers[groupId].childNodes;
+        matches.forEach((match) => {
+            match.firstChild.childNodes[0].style.backgroundColor = "darkgray";
+            match.firstChild.childNodes[1].style.backgroundColor = "darkgray";
+        });
+    });
+
     const header = document.createElement("div");
     header.classList.add("header");
     header.classList.add("bg-clr-gray");
@@ -229,6 +249,7 @@ function displayGroup(groupId) {
     const matchesContainer = document.createElement("div");
     matchesContainer.classList.add("matchesContainer");
 
+    group.appendChild(reset);
     group.appendChild(header);
     displayPlayers(groupId, tableContainer);
     group.appendChild(tableContainer);
@@ -242,20 +263,11 @@ function displayPlayers(groupId, tableContainer) {
     let sorted = [...players[groupId]];
 
     sortPlayers(sorted, groupId);
-    checkForMaxPlace(sorted, groupId);
-    checkColors(sorted, groupId);
-    // debug
-    if (groupId == 0) {
-        console.log("Sorted table:");
-        console.table(sorted);
-        // console.log("Players table:");
-        // console.table(players[groupId]);
-    }
 
     let tableRow;
 
     for (let i = 0; i < PLAYERS_PER_GROUP; i++) {
-        tableRow = createTableRow(sorted[i]);
+        tableRow = createTableRow(sorted[i], i);
         tableContainer.appendChild(tableRow);
     }
 }
@@ -295,117 +307,11 @@ function sortPlayers(sorted, groupId) {
     });
 }
 
-// Calculate max place that certain players can still get
-function checkForMaxPlace(sorted, groupId) {
-    let checked = [...sorted];
-    checked.reverse();
-
-    for (let i = 0; i < checked.length - 1; i++) {
-        // console.log(players[groupId][checked[i].id]);
-        // console.log(checked[i]);
-
-        for (let j = i + 1; j < checked.length; j++) {
-            // Maximum number of points that player can still get
-            let maxPoints = 15 - Math.floor(checked[i].loses / 2) * 3;
-            // Maximum number of map wins that player can still get
-            let maxWins = 10 - checked[i].loses;
-            // Maximum balance of map wins/loses that player can still have
-            let maxBalance = maxWins - checked[i].loses;
-            // Did compared players already play each other?
-            let playedEachOther =
-                checked[i][keys[j]] > 0 || checked[j][keys[i]] > 0;
-            // Map balance of opponent
-            let opBalance = checked[j].balance;
-            // If compared players did't play each other yet, distract 2 points from balance (comparation assumes checked player wins)
-            if (!playedEachOther) {
-                opBalance -= 2;
-            }
-            // Maps player won vs opponent
-            let playerMapsWonVsOp = checked[i][keys[j]];
-            // Maps opponent won vs player
-            let opMapsWonVsPlayer = checked[j][keys[i]];
-            // Points player has vs opponent
-            let playerPointsVsOp = Math.floor(playerMapsWonVsOp / 2) * 3;
-            // Points opponent has vs player
-            let opPointsVsPlayer = Math.floor(opMapsWonVsPlayer / 2) * 3;
-            // Balance player has vs opponent
-            let playerBalanceVsOp = playerMapsWonVsOp - opMapsWonVsPlayer;
-            // Balance opponent has vs player
-            let opBalanceVsPlayer = opMapsWonVsPlayer - playerMapsWonVsOp;
-
-            // Can't advance against j-th opponent (won't have enough points)
-            if (maxPoints < checked[j].points) {
-                players[groupId][checked[i].id].maxPlace = 6 - (j - 1);
-                break;
-
-            // Tie in points
-            } else if (maxPoints == checked[j].points) {
-                // Can't advance against j-th opponent (won't have enought balance)
-                if (maxBalance < opBalance) {
-                    players[groupId][checked[i].id].maxPlace = 6 - (j - 1);
-                    break;
-
-                // Tie in balance
-                } else if (maxBalance == opBalance) {
-                    // Can't advance against j-th opponent (won't have enought map wins)
-                    if (maxWins < checked[j].wins) {
-                        players[groupId][checked[i].id].maxPlace = 6 - (j - 1);
-                        break;
-
-                    // Tie in map wins
-                    } else if (maxWins == checked[j].wins) {
-                        // Can't advance against j-th opponent (won't have enought points vs opponent)
-                        if (playerPointsVsOp < opPointsVsPlayer) {
-                            players[groupId][checked[i].id].maxPlace = 6 - (j - 1);
-                            break;
-
-                        // Tie in points vs opponent
-                        } else if (playerPointsVsOp < opPointsVsPlayer) {
-                            // Can't advance against j-th opponent (won't have enought balance vs opponent)
-                            if (playerBalanceVsOp < opBalanceVsPlayer) {
-                                players[groupId][checked[i].id].maxPlace =
-                                6 - (j - 1);
-                                break;
-
-                            // Tie in balance vs opponent
-                            } else if (playerBalanceVsOp == opBalanceVsPlayer) {
-                                // Can't advance against j-th opponent (won't have enought map wins vs opponent)
-                                if (playerMapsWonVsOp < opMapsWonVsPlayer) {
-                                    players[groupId][checked[i].id].maxPlace =
-                                    6 - (j - 1);
-                                    break;
-                                }
-                            // Further ties are resolved through tie-breaker match
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-function checkColors(sorted, groupId){
-    //Check losers
-    let losers = sorted.slice(3);
-    for(let i=0;i<3;i++){
-        if(losers[i].maxPlace > 3){
-            players[groupId][losers[i].id].bgc = 3;
-        }
-    }
-    //Check 1st place
-    if(sorted[1].maxPlace > 1){
-        players[groupId][sorted[0].id].bgc = 1;
-    }
-}
-
-function createTableRow(playerData) {
+function createTableRow(playerData, rowIndex) {
     let colorClass;
-    if (playerData.bgc == 0) {
-        colorClass = "bg-clr-gray";
-    } else if (playerData.bgc == 1) {
+    if (rowIndex == 0 || rowIndex == 1) {
         colorClass = "bg-clr-green";
-    } else if (playerData.bgc == 2) {
+    } else if (rowIndex == 2 || rowIndex == 3) {
         colorClass = "bg-clr-yellow";
     } else {
         colorClass = "bg-clr-red";

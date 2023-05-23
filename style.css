@@ -10,6 +10,19 @@
     box-sizing: border-box;
 }
 
+:root{
+    --clr-light: hsl(0, 0%, 98%);
+    --clr-gray: hsl(0, 0%, 66%);
+    --clr-dark: hsl(0, 0%, 27%);
+
+    --clr-light-blue: hsl(218, 35%, 51%);
+    --clr-dark-blue: hsl(218, 35%, 47%);
+
+    --clr-win: hsl(120, 51%, 91%);
+    --clr-advance: hsl(80, 68%, 87%);
+    --clr-lose: hsl(0, 78%, 93%);
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -20,7 +33,7 @@ body {
     min-height: 100vh;
     margin: 0;
 
-    background-color: dimgray;
+    background-color: var(--clr-dark);
     font-family: "Roboto";
 }
 
@@ -33,11 +46,11 @@ body {
 }
 
 select:disabled {
-    color: black;
+    color: var(--clr-dark);
 }
 
 .showHide:hover {
-    color: white;
+    color: var(--clr-light);
 }
 
 /* ------------------
@@ -146,6 +159,7 @@ select:disabled {
     display: none;
     padding: 0.5em 1em;
     margin-top: 10px;
+    width: 150px;
 }
 
 /* ------------------
@@ -158,6 +172,14 @@ select {
 
 button {
     cursor: pointer;
+    background-color: var(--clr-dark-blue);
+    border: none;
+    border-radius: .2rem;
+    color: var(--clr-light);
+}
+
+button:hover{
+    background-color: var(--clr-light-blue);
 }
 
 input[type="submit"] {
@@ -178,21 +200,21 @@ h3 {
 }
 
 /* ------------------
-        COLORING 
+         COLORS 
    ------------------ */
 
 .bg-clr-gray {
-    background-color: darkgray;
+    background-color: var(--clr-gray);
 }
 
 .bg-clr-green {
-    background-color: rgb(221, 244, 221);
+    background-color: var(--clr-win);
 }
 
 .bg-clr-yellow {
-    background-color: rgb(229, 244, 198);
+    background-color: var(--clr-advance);
 }
 
 .bg-clr-red {
-    background-color: rgb(251, 223, 223);
+    background-color: var(--clr-lose);
 }
