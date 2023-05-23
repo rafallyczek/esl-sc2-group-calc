@@ -243,6 +243,7 @@ function displayPlayers(groupId, tableContainer) {
 
     sortPlayers(sorted, groupId);
     checkForMaxPlace(sorted, groupId);
+    checkColors(sorted, groupId);
     // debug
     if (groupId == 0) {
         console.log("Sorted table:");
@@ -268,7 +269,7 @@ function displayMatches(groupId) {
         matchesContainers[groupId].appendChild(matchRow);
     }
 }
-// ["vs0", "vs1", "vs2", "vs3", "vs4", "vs5"]
+
 function sortPlayers(sorted, groupId) {
     sorted.sort((a, b) => {
         let aMapsWonVsB = players[groupId][a.id][keys[b.id]];
@@ -337,28 +338,28 @@ function checkForMaxPlace(sorted, groupId) {
                 players[groupId][checked[i].id].maxPlace = 6 - (j - 1);
                 break;
 
-                // Tie in points
+            // Tie in points
             } else if (maxPoints == checked[j].points) {
                 // Can't advance against j-th opponent (won't have enought balance)
                 if (maxBalance < opBalance) {
                     players[groupId][checked[i].id].maxPlace = 6 - (j - 1);
                     break;
 
-                    // Tie in balance
+                // Tie in balance
                 } else if (maxBalance == opBalance) {
                     // Can't advance against j-th opponent (won't have enought map wins)
                     if (maxWins < checked[j].wins) {
                         players[groupId][checked[i].id].maxPlace = 6 - (j - 1);
                         break;
 
-                        // Tie in map wins
+                    // Tie in map wins
                     } else if (maxWins == checked[j].wins) {
                         // Can't advance against j-th opponent (won't have enought points vs opponent)
                         if (playerPointsVsOp < opPointsVsPlayer) {
                             players[groupId][checked[i].id].maxPlace = 6 - (j - 1);
                             break;
 
-                            // Tie in points vs opponent
+                        // Tie in points vs opponent
                         } else if (playerPointsVsOp < opPointsVsPlayer) {
                             // Can't advance against j-th opponent (won't have enought balance vs opponent)
                             if (playerBalanceVsOp < opBalanceVsPlayer) {
@@ -366,7 +367,7 @@ function checkForMaxPlace(sorted, groupId) {
                                 6 - (j - 1);
                                 break;
 
-                                // Tie in balance vs opponent
+                            // Tie in balance vs opponent
                             } else if (playerBalanceVsOp == opBalanceVsPlayer) {
                                 // Can't advance against j-th opponent (won't have enought map wins vs opponent)
                                 if (playerMapsWonVsOp < opMapsWonVsPlayer) {
@@ -374,13 +375,27 @@ function checkForMaxPlace(sorted, groupId) {
                                     6 - (j - 1);
                                     break;
                                 }
-                                // Further ties are resolved through tie-breaker match
+                            // Further ties are resolved through tie-breaker match
                             }
                         }
                     }
                 }
             }
         }
+    }
+}
+
+function checkColors(sorted, groupId){
+    //Check losers
+    let losers = sorted.slice(3);
+    for(let i=0;i<3;i++){
+        if(losers[i].maxPlace > 3){
+            players[groupId][losers[i].id].bgc = 3;
+        }
+    }
+    //Check 1st place
+    if(sorted[1].maxPlace > 1){
+        players[groupId][sorted[0].id].bgc = 1;
     }
 }
 
