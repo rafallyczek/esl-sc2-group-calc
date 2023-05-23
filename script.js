@@ -117,6 +117,7 @@ let players = [
 ];
 
 submit.addEventListener("click", function () {
+    document.querySelector("body").style.justifyContent = "start";
     document.querySelector(".setup-header").style.display = "none";
     document.querySelector(".setup").style.display = "none";
     content.style.display = "flex";
