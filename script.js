@@ -222,12 +222,7 @@ function displayGroup(groupId) {
             );
         }
         updatePlayers(groupId);
-        const matchesContainers = document.querySelectorAll(".matchesContainer");
-        const matches = matchesContainers[groupId].childNodes;
-        matches.forEach((match) => {
-            match.firstChild.childNodes[0].style.backgroundColor = "darkgray";
-            match.firstChild.childNodes[1].style.backgroundColor = "darkgray";
-        });
+        resetMatches(groupId);
     });
 
     const header = document.createElement("div");
@@ -524,4 +519,15 @@ function resetGroup(groupId) {
         players[groupId][i].vs4 = 0;
         players[groupId][i].vs5 = 0;
     }
+}
+
+function resetMatches(groupId){
+    const matchesContainers = document.querySelectorAll(".matchesContainer");
+    const matches = matchesContainers[groupId].childNodes;
+    matches.forEach((match) => {
+        match.getElementsByClassName("matchup")[0].firstElementChild.style.backgroundColor = "darkgray";
+        match.getElementsByClassName("matchup")[0].lastElementChild.style.backgroundColor = "darkgray";
+        match.getElementsByClassName("playerSelect")[0].firstElementChild.selected = "selected";
+        match.getElementsByClassName("scoreSelect")[0].firstElementChild.selected = "selected";
+    });
 }
