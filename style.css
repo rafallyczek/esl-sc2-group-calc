@@ -1,8 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
-/* ------------------
-     GLOBAL STYLES 
-   ------------------ */
+/* General styles */
 
 *,
 *::before,
@@ -37,13 +35,12 @@ body {
     font-family: "Roboto";
 }
 
-/* ------------------
-       TYPOGRAPHY 
-   ------------------ */
-
-.text-center {
-    text-align: center;
+h2,
+h3 {
+    margin: 10px 0;
 }
+
+/* Typography */
 
 select:disabled {
     color: var(--clr-dark);
@@ -53,9 +50,7 @@ select:disabled {
     color: var(--clr-light);
 }
 
-/* ------------------
-         LAYOUT 
-   ------------------ */
+/* Layout */
 
 .setup {
     display: flex;
@@ -69,11 +64,6 @@ select:disabled {
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5em;
-}
-
-.submit {
-    width: 100px;
-    padding: 0.5em 1em;
 }
 
 .groups > div {
@@ -100,12 +90,6 @@ select:disabled {
     margin-bottom: auto;
 }
 
-.header {
-    min-width: 476px;
-    padding: 5px;
-    font-weight: bold;
-}
-
 .tableContainer {
     display: flex;
     flex-direction: column;
@@ -115,17 +99,6 @@ select:disabled {
 .tableRow {
     display: flex;
     gap: 2px;
-}
-
-.tableRow > div {
-    padding: 5px;
-    min-width: 110px;
-}
-
-.showHide {
-    min-width: 476px;
-    padding: 5px;
-    cursor: pointer;
 }
 
 .matchesContainer {
@@ -140,9 +113,28 @@ select:disabled {
 }
 
 .matchup {
-    min-width: 220px;
     display: flex;
     gap: 2px;
+    min-width: 220px;
+}
+
+/* Components */
+
+.header {
+    min-width: 476px;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.tableRow > div {
+    padding: 5px;
+    min-width: 110px;
+}
+
+.showHide {
+    min-width: 476px;
+    padding: 5px;
+    cursor: pointer;
 }
 
 .playerDiv {
@@ -155,20 +147,19 @@ select:disabled {
     padding: 5px;
 }
 
-.reset {
-    display: none;
-    padding: 0.5em 1em;
-    margin-top: 10px;
-    width: 150px;
-}
-
-/* ------------------
-       COMPONENTS 
-   ------------------ */
-
 select {
     cursor: pointer;
 }
+
+.group-setup {
+    padding: 5px;
+}
+
+.matchup > div {
+    padding: 5px;
+}
+
+/* Buttons */
 
 button {
     cursor: pointer;
@@ -182,26 +173,19 @@ button:hover{
     background-color: var(--clr-light-blue);
 }
 
-input[type="submit"] {
-    cursor: pointer;
+.submit {
+    width: 100px;
+    padding: 0.5em 1em;
 }
 
-.group-setup {
-    padding: 5px;
+.reset {
+    display: none;
+    padding: 0.5em 1em;
+    margin-top: 10px;
+    width: 150px;
 }
 
-.matchup > div {
-    padding: 5px;
-}
-
-h2,
-h3 {
-    margin: 10px 0;
-}
-
-/* ------------------
-         COLORS 
-   ------------------ */
+/* Utility classes */
 
 .bg-clr-gray {
     background-color: var(--clr-gray);
@@ -217,4 +201,12 @@ h3 {
 
 .bg-clr-red {
     background-color: var(--clr-lose);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-clr-light{
+    color: var(--clr-light);
 }
