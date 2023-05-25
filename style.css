@@ -33,6 +33,14 @@ body {
 
     background-color: var(--clr-dark);
     font-family: "Roboto";
+
+    overflow-y: auto;
+}
+
+@supports(overflow-y: overlay){
+    body{
+        overflow-y: overlay;
+    }
 }
 
 h2,
